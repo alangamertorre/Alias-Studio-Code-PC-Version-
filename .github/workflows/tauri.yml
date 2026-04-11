@@ -41,11 +41,32 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      # 🔥 IMPORTANTE: build frontend antes
-      - name: Build frontend
-        run: |
-          mkdir -p dist
-          cp -r src/* dist/
-
       - name: Build Tauri
         run: npx tauri build
+
+      - name: Upload artifacts (Windows)
+        if: matrix.os == 'windows-latest'
+        uses: actions/upload-artifact@v4
+        with:
+          name: tauri-windows
+          path: |
+            src-tauri/target/release/bundle/msi/*
+            src-tauri/target/release/bundle/nsis/*
+
+      - name: Upload artifacts (macOS)
+        if: matrix.os == 'macos-latest'
+        uses: actions/upload-artifact@v4
+        with:
+          name: tauri-macos
+          path: |
+            src-tauri/target/release/bundle/dmg/*
+            src-tauri/target/release/bundle/macos/*
+
+      - name: Upload artifacts (Linux)
+        if: matrix.os == 'ubuntu-latest'
+        uses: actions/upload-artifact@v4
+        with:
+          name: tauri-linux
+          path: |
+            src-tauri/target/release/bundle/deb/*
+            src-tauri/target/release/bundle/appimage/*
