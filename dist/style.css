@@ -1,14 +1,35 @@
-html,
-body {
-  margin: 0;
+/* BARA GENERAL */
+.sistem-bar {
+  position: fixed;
+  background: var(--bg-submain);
+  height: 40px;
+  width: 100%;
+  top: 0%;
+  left: 0%;
+  right: 0%;
+  z-index: 1000;
+  display: flex;
+  user-select: none;
+}
+
+/* APP */
+
+.app {
+  position: relative;
+  overflow: hidden;
+  padding-top: 80px;
+  display: flex;
+  height: 100vh;
+  width: 100%;
 }
 
 /* ==================== BARRA LATERAL ==================== */
 .barra1 {
-  background-color: #181818;
+  background-color: var(--bg-submain);
   position: fixed;
-  height: 100%;
+  height: calc(100% - var(--h-sistem_bar));
   width: 48px;
+  top: var(--h-sistem_bar);
   left: 0px;
   z-index: 2;
   display: flex;
@@ -72,6 +93,7 @@ body {
 /*Btn especiales*/
 
 #Cuenta {
+  margin-top: auto;
   margin-bottom: 0.5rem;
 }
 
@@ -88,7 +110,7 @@ body {
   /* al lado del botón */
   top: 50%;
   transform: translateY(-50%) translateX(-6px);
-  background: #252526;
+  background: var(--bg-submain);
   color: var(--text-tooltips);
   font-size: 12px;
   padding: 4px 8px;
@@ -142,10 +164,11 @@ body {
 
 /*==================== BARRA SUPERIOR (Barra 2) =====================*/
 .barra2 {
-  background-color: #181818;
+  background-color: var(--bg-submain);
   position: fixed;
   height: 3rem;
   width: calc(100% - 48px);
+  top: var(--h-sistem_bar);
   left: 48px;
   z-index: 1;
   border-radius: 1px;
@@ -195,8 +218,8 @@ body {
 }
 
 /*=============================== Barra de información del código =================================*/
-.InfoDelCódigo {
-  display: flex;
+.InfoDelCodigo {
+  display: none;
   align-items: center;
   gap: 1rem;
   /* espacio uniforme */
@@ -257,7 +280,7 @@ body {
 /*========================== BARRA DE PESTAÑAS (Barra 3) ============================*/
 .barra3 {
   position: fixed;
-  top: calc(3.5rem + 8px);
+  top: calc(3.5rem + var(--h-sistem_bar));
   left: 56px;
   width: calc(100% - 64px);
   height: var(--h-barra2);
@@ -371,7 +394,7 @@ body {
 /*===================== Visualizacion =====================*/
 .caja-visualizacion {
   position: fixed;
-  top: calc(3.5rem + var(--h-barra2) + 8px);
+  top: calc(3.5rem + var(--h-barra2) + 8px + var(--h-sistem_bar));
   left: 56px;
   right: 8px;
   bottom: 8px;
@@ -382,37 +405,32 @@ body {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  border: 1.5px solid var(--border);
+  border: 1px solid var(--border);
   border-radius: 4px;
   box-sizing: border-box;
   z-index: 0;
 }
 
-/* Por esto */
+
 .visualizador {
   position: absolute;
   width: 100%;
   height: 100%;
   display: none;
-  background: transparent;
   box-sizing: border-box;
   z-index: 2;
-  border: 1px solid var(--border);
   border-radius: 4px;
-  /* sin opacity: 0 — anime.js lo maneja al mostrar */
 }
 
-/* Añade esto nuevo */
-#vis-editor {
-  display: none;
+[id^="vis-editor"] {
   flex-direction: column;
 }
 
-#editor {
+.editor {
   width: 100%;
   height: 100%;
   min-height: 0;
-  background-color: #1f1f1f;
+  background-color: var(--bg-submain);
 }
 
 /*====================== Barra 4 =========================*/
@@ -425,7 +443,7 @@ body {
   max-width: 70%;
   display: none;
   box-sizing: border-box;
-  background-color: var(--bg-main);
+  background-color: var(--bg-submain);
   border: 1px solid var(--border);
   border-radius: 1px;
   z-index: 1;
@@ -593,7 +611,8 @@ button.txt-adv {
 
 
 :root {
-  --bg-main: #181818;
+  --bg-main: #121314;
+  --bg-submain: #191919;
   --border: #444;
   --text-tooltips: #b8b8b8;
   --text-secondary: #727272;
@@ -603,6 +622,7 @@ button.txt-adv {
   --fs-normal: 16px;
   --fs-large: 24px;
   --h-barra2: 1.5rem;
+  --h-sistem_bar: 40px;
 }
 
 /* 12px detalles 14–16px texto normal 20–24px títulos */
