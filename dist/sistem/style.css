@@ -1,0 +1,79 @@
+.title-bar {
+    background: var(--bg-main);
+    color: var(--text-secondary);
+    height: 40px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    z-index: 1000;
+    border: 1.5px solid var(--border);
+    padding: 0 5px;
+    -webkit-app-region: drag;
+    /* permite arrastrar la ventana */
+}
+
+.title-bar img {
+    height: 30px;
+    margin-left: 3px;
+}
+
+.title {
+    margin-left: 10px;
+    font-weight: bold;
+    font-size: 14px;
+    user-select: none;
+}
+
+.buttons {
+    margin-left: auto;
+    display: flex;
+    gap: 5px;
+}
+
+
+.butons {
+    -webkit-app-region: no-drag;
+    /* para que sean clicables */
+    background: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    height: 32px;
+    /* altura tipo Win11 */
+    width: 32px;
+    /* ancho */
+    cursor: pointer;
+    border-radius: 6px;
+    /* esquinas redondeadas suaves */
+    padding: 0;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+/* Hover efecto suave */
+.butons:hover {
+    background-color: #3a3a3a;
+    transform: scale(1.05);
+}
+
+/* Botón de cerrar */
+#btn-close:hover {
+    background-color: #e91729;
+    color: white;
+}
+
+/* Efecto presionado */
+.butons:active {
+    transform: scale(0.95);
+}
+
+/* Iconos dentro de los botones */
+.butons img {
+    display: block;
+    max-width: 80%;
+    max-height: 80%;
+    margin: auto;
+    pointer-events: none;
+    justify-content: center;
+    align-items: center;
+}
